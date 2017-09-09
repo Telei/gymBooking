@@ -171,7 +171,7 @@ public class clientMain {
                 Date currDateEnd = sdf.parse(endTime);//当前时间结束
                 Date startDate = sdf.parse(dateArr[0]);//每节开始时间
                 Date endDate = sdf.parse(dateArr[1]);//每节结束时间
-                if((currDateStart.getTime()==startDate.getTime()&&currDateEnd.getTime()==endDate.getTime())||(currDateStart.after(startDate) && currDateStart.before(endDate)) || (currDateEnd.after(startDate)&&currDateEnd.before(endDate))){
+                if((currDateStart.getTime()==startDate.getTime()&&currDateEnd.getTime()==endDate.getTime())||(currDateStart.getTime()>=startDate.getTime()&& currDateStart.getTime()<=endDate.getTime()) || (currDateEnd.getTime()>=startDate.getTime()&&currDateEnd.getTime()<=endDate.getTime())){
                     return false;
                 }
             }
