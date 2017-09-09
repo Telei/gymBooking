@@ -72,7 +72,7 @@ public class clientMain {
                         }else{
                             listTime.add(startTime+"--"+endTime);
                             orders.put(input[3],listTime);
-                            customer.put(input[0]+input[1]+input[2],input[3]);
+                            customer.put(input[0]+input[1]+input[2]+input[3],input[3]);
                             Site site=new Site();
                            int money=site.calculateCost(input[1],periodArr[0],periodArr[1],false);
                             if(ordersMap.get(input[3])!=null){
@@ -100,7 +100,7 @@ public class clientMain {
                         }else if(!timePeriod(periodArr[0],periodArr[1])){
                             System.out.println(">Error: Not in business hours or the end time is earlier than the start time!");
                         }else {
-                            String booked=customer.get(input[0]+input[1]+input[2]);
+                            String booked=customer.get(input[0]+input[1]+input[2]+input[3]);
                             if (booked==null){
                                 System.out.println("> Error:The booking being cancelled does not exist!");
                             }else if(booked.equals(input[3])){
