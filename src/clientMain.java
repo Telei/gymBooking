@@ -70,6 +70,11 @@ public class clientMain {
                         }else if(!timePeriod(periodArr[0],periodArr[1])){
                             System.out.println(">Error: Not in business hours or the end time is earlier than the start time!");
                         }else{
+                            if(orders.get(input[3])!=null){
+                                listTime=orders.get(input[3]);
+                            }else {
+                                listTime=new ArrayList<>();
+                            }
                             listTime.add(startTime+"--"+endTime);
                             orders.put(input[3],listTime);
                             customer.put(input[0]+input[1]+input[2]+input[3],input[3]);
@@ -104,7 +109,7 @@ public class clientMain {
                             if (booked==null){
                                 System.out.println("> Error:The booking being cancelled does not exist!");
                             }else if(booked.equals(input[3])){
-                                customer.remove(input[0]+input[1]+input[2]);
+                                customer.remove(input[0]+input[1]+input[2]+input[3]);
                                 List<String> periods=orders.get(input[3]);
                                 Iterator<String> stringIterator=periods.iterator();
                                 while (stringIterator.hasNext()){
@@ -113,7 +118,6 @@ public class clientMain {
                                         break;
                                     }
                                 }
-                                orders.remove(input[3]+input[1]+input[2]);
                                 Site site=new Site();
                                 int money=site.calculateCost(input[1],periodArr[0],periodArr[1],true);
                                 if(ordersMap.get(input[3])!=null){
@@ -191,6 +195,14 @@ public class clientMain {
             return false;
         }
     }
+
+    /**
+     * 比较时间段合法性
+     * @param startTime
+     * @param endTime
+     * @return
+     * @throws Exception
+     */
     public static boolean timePeriod(String startTime,String endTime) throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         Date currDateStart = sdf.parse(startTime);//当前时间开始
