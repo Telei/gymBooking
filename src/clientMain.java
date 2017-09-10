@@ -125,7 +125,7 @@ public class clientMain {
                                     Iterator<OrderDetails> iterable=odList.iterator();
                                     while (iterable.hasNext()){
                                         OrderDetails orderDetails=iterable.next();
-                                        if(orderDetails.getTimePeriod().equals(input[1]+" "+input[2])){
+                                        if(orderDetails.getTimePeriod().equals(input[1]+" "+input[2])&&!orderDetails.isBreachOfContract()){
                                             iterable.remove();
                                             break;
                                         }
